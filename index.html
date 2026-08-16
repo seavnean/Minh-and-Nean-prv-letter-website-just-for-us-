@@ -87,8 +87,11 @@
             font-weight: bold;
             margin: 15px 0;
         }
-
-        .date {
+#time {
+    font-size: 16px;
+    color: #8a6870;
+    margin-bottom: 10px;
+}        .date {
             color: #8a6870;
         }
 
@@ -190,11 +193,13 @@
                 <h2>
                     ❤️ We've been together for
                 </h2>
+<div class="days" id="days">
+    0 days
+</div>
 
-                <div class="days" id="days">
-                    0 days
-                </div>
-
+<div id="time">
+    0 hours · 0 minutes · 0 seconds
+</div>
                 <p class="date">
                     Since <span id="startDate"></span>
                 </p>
@@ -243,30 +248,48 @@
 
         function updateCounter() {
 
-            const today = new Date();
+    const now = new Date();
 
-            const difference =
-                today - relationshipStart;
+    const difference = now - relationshipStart;
 
-            const daysTogether =
-                Math.floor(
-                    difference / (1000 * 60 * 60 * 24)
-                );
+    const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
 
-            document.getElementById("days").textContent =
-                daysTogether + " days";
+    const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+    );
 
-            document.getElementById("startDate").textContent =
-                relationshipStart.toLocaleDateString(
-                    "en-US",
-                    {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                    }
-                );
-        }
+    const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+    );
 
+    const seconds = Math.floor(
+        (difference / 1000) % 60
+    );
+
+    document.getElementById("days").textContent =
+        days + " days";
+
+    document.getElementById("time").textContent =
+        hours + " hours · " +
+        minutes + " minutes · " +
+        seconds + " seconds";
+
+    document.getElementById("startDate").textContent =
+        relationshipStart.toLocaleDateString(
+            "en-US",
+            {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+}
+
+updateCounter();
+
+setInterval(updateCounter, 1000);
 
         function showMessage() {
 
