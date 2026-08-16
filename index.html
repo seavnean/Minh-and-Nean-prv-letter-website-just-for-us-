@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Minh & Nean ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, serif;
+            background: #fff7f8;
+            color: #4a3035;
+            text-align: center;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .heart {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #8a6870;
+            margin-bottom: 35px;
+        }
+
+        .message {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(80, 40, 50, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .message h2 {
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .counter {
+            background: #fff;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(80, 40, 50, 0.08);
+        }
+
+        .counter h2 {
+            margin-bottom: 10px;
+        }
+
+        .days {
+            font-size: 55px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .date {
+            color: #8a6870;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            background: #4a3035;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        #secretMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 30px;
+            color: #9b7c83;
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .heart {
+                font-size: 55px;
+            }
+
+            .message {
+                padding: 25px;
+            }
+
+            .days {
+                font-size: 42px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="hero">
+
+        <div class="container">
+
+            <div class="heart">
+                ❤️
+            </div>
+
+            <h1>
+                Minh & Nean
+            </h1>
+
+            <p class="subtitle">
+                A little place made just for us
+            </p>
+
+
+            <section class="message">
+
+                <h2>
+                    💌 A message for you
+                </h2>
+
+                <p>
+                    Thank you for being part of my life.
+                    No matter how busy life becomes,
+                    I hope we always remember the little
+                    moments that made us smile.
+                </p>
+
+                <p style="margin-top: 15px;">
+                    I’m grateful for every day we have
+                    together and excited for all the
+                    memories still waiting for us. ❤️
+                </p>
+
+            </section>
+
+
+            <section class="counter">
+
+                <h2>
+                    ❤️ We've been together for
+                </h2>
+
+                <div class="days" id="days">
+                    0 days
+                </div>
+
+                <p class="date">
+                    Since <span id="startDate"></span>
+                </p>
+
+                <button onclick="showMessage()">
+                    Open one more message 💌
+                </button>
+
+                <p id="secretMessage">
+                    You are one of the people I’m happiest
+                    to have in my life. ❤️
+                    <br><br>
+                    Let's keep growing, learning,
+                    and making memories together.
+                </p>
+
+            </section>
+
+
+            <footer>
+                Made with ❤️ by Nean
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /*
+         * CHANGE THIS DATE
+         *
+         * Put the date you two started dating.
+         *
+         * Format:
+         * YYYY-MM-DD
+         *
+         * Example:
+         * 2025-06-15
+         */
+
+        const relationshipStart =
+            new Date("2025-06-01");
+
+
+        function updateCounter() {
+
+            const today = new Date();
+
+            const difference =
+                today - relationshipStart;
+
+            const daysTogether =
+                Math.floor(
+                    difference / (1000 * 60 * 60 * 24)
+                );
+
+            document.getElementById("days").textContent =
+                daysTogether + " days";
+
+            document.getElementById("startDate").textContent =
+                relationshipStart.toLocaleDateString(
+                    "en-US",
+                    {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
+                );
+        }
+
+
+        function showMessage() {
+
+            const message =
+                document.getElementById("secretMessage");
+
+            if (message.style.display === "block") {
+
+                message.style.display = "none";
+
+            } else {
+
+                message.style.display = "block";
+
+            }
+
+        }
+
+
+        updateCounter();
+
+    </script>
+
+</body>
+
+</html>
